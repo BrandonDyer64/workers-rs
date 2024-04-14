@@ -34,6 +34,7 @@ export function getMemory() {
 mod install;
 
 pub fn main() -> Result<()> {
+    println!("HELLO WORLD");
     // Our tests build the bundle ourselves.
     if !cfg!(test) {
         install::ensure_wasm_pack()?;
@@ -210,6 +211,7 @@ fn bundle(esbuild_path: &Path) -> Result<()> {
     command.args([
         "--external:./index.wasm",
         "--external:cloudflare:sockets",
+        "--external:__STATIC_CONTENT_MANIFEST",
         "--format=esm",
         "--bundle",
         "./shim.js",
